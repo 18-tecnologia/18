@@ -1,3 +1,140 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Futuristic AI Color Palette */
+    --background: 225 39% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 225 39% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 225 39% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 100% 60%;
+    --primary-foreground: 225 39% 4%;
+
+    --secondary: 240 100% 70%;
+    --secondary-foreground: 225 39% 4%;
+
+    --muted: 225 39% 12%;
+    --muted-foreground: 210 40% 70%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 225 39% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 39% 16%;
+    --input: 225 39% 12%;
+    --ring: 210 100% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom AI Theme Colors */
+    --cyber-blue: 210 100% 60%;
+    --cyber-purple: 240 100% 70%;
+    --cyber-cyan: 180 100% 50%;
+    --cyber-dark: 225 39% 4%;
+    --cyber-surface: 225 39% 8%;
+    --cyber-border: 225 39% 16%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--cyber-blue)), hsl(var(--cyber-purple)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--cyber-surface)) 0%, hsl(var(--cyber-dark)) 100%);
+    --gradient-border: linear-gradient(90deg, hsl(var(--cyber-blue)), hsl(var(--cyber-cyan)));
+    
+    /* Glows */
+    --glow-primary: 0 0 20px hsl(var(--cyber-blue) / 0.3);
+    --glow-secondary: 0 0 20px hsl(var(--cyber-purple) / 0.3);
+    --glow-accent: 0 0 20px hsl(var(--cyber-cyan) / 0.3);
+
+    --sidebar-background: 225 39% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 100% 60%;
+    --sidebar-primary-foreground: 225 39% 4%;
+    --sidebar-accent: 225 39% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 225 39% 16%;
+    --sidebar-ring: 210 100% 60%;
+  }
+
+  .dark {
+    /* Already optimized for dark theme */
+    --background: 225 39% 4%;
+    --foreground: 210 40% 98%;
+    --card: 225 39% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 225 39% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 100% 60%;
+    --primary-foreground: 225 39% 4%;
+    --secondary: 240 100% 70%;
+    --secondary-foreground: 225 39% 4%;
+    --muted: 225 39% 12%;
+    --muted-foreground: 210 40% 70%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 225 39% 4%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 225 39% 16%;
+    --input: 225 39% 12%;
+    --ring: 210 100% 60%;
+    
+    /* Dark cyber colors */
+    --cyber-blue: 210 100% 60%;
+    --cyber-purple: 240 100% 70%;
+    --cyber-cyan: 180 100% 50%;
+    --cyber-dark: 225 39% 4%;
+    --cyber-surface: 225 39% 8%;
+    --cyber-border: 225 39% 16%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 225 39% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 225 39% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 225 39% 4%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 180 100% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 100% 50%;
+    
+    /* Light cyber colors */
+    --cyber-blue: 210 100% 50%;
+    --cyber-purple: 240 100% 50%;
+    --cyber-cyan: 180 100% 40%;
+    --cyber-dark: 0 0% 100%;
+    --cyber-surface: 210 40% 96%;
+    --cyber-border: 214.3 31.8% 91.4%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
