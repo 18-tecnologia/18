@@ -102,6 +102,7 @@ All colors MUST be HSL.
     --cyber-surface: 225 39% 8%;
     --cyber-border: 225 39% 16%;
 
+    --hero-dark: 220 13% 20%;
     --footer-dark: 220 13% 20%;
   }
 
@@ -112,12 +113,12 @@ All colors MUST be HSL.
     --card-foreground: 225 39% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 225 39% 4%;
-    --primary: 210 100% 50%;
+    --primary: 216 76% 48%; /* #5072A5 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 100% 50%;
+    --secondary: 240 50% 60%;
     --secondary-foreground: 0 0% 100%;
     --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 225 39% 14%;
     --accent: 180 100% 40%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
@@ -128,13 +129,14 @@ All colors MUST be HSL.
 
     /* Light cyber colors */
     --cyber-blue: 217 74% 18%;      /* #0C2750 */
-    --cyber-blue-light: 218 36% 48%;/* #5072A5 */
+    --cyber-blue-light: 216 76% 48%;/* #5072A5 */
     --cyber-purple: 240 100% 50%;
     --cyber-cyan: 180 100% 40%;
     --cyber-dark: 0 0% 100%;
     --cyber-surface: 210 40% 96%;
     --cyber-border: 214.3 31.8% 91.4%;
 
+    --hero-light: 40 40% 87%; /* Bege pastel claro para hero no tema claro */
     --footer-light: 40 40% 87%; /* Bege pastel claro para rodapé no tema claro */
   }
 }
@@ -146,5 +148,9 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
