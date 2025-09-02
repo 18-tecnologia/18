@@ -33,7 +33,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-screen py-20">
           {/* Main Logo - Left Side */}
           <div className="flex flex-col items-center lg:items-start">
-            <h1 className="text-[20rem] md:text-[30rem] lg:text-[35rem] font-black font-orbitron bg-gradient-hero bg-clip-text text-transparent animate-pulse-glow leading-none">
+            <h1 className="text-[20rem] md:text-[30rem] lg:text-[35rem] font-black font-orbitron bg-gradient-hero bg-clip-text text-transparent leading-none">
               18
             </h1>
           </div>
