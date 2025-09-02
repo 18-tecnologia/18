@@ -3,9 +3,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "emailjs-com";
+import { v4 as uuidv4 } from "uuid";
 
 const pdfs = [
 	{
@@ -53,18 +53,25 @@ export default function Downloads() {
 		e.preventDefault();
 		setLoading(true);
 
+		// Gera token com expiração de 1 hora
+		const tokenData = {
+			id: uuidv4(),
+			file: pdfs[selectedPdf!].file,
+			exp: Date.now() + 60 * 60 * 1000, // 1 hora
+		};
+		const token = btoa(JSON.stringify(tokenData));
+
 		try {
 			await emailjs.send(
 				import.meta.env.VITE_EMAILJS_SERVICE_ID,
-				import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+				import.meta.env.VITE_EMAILJS_TEMPLATE_DOWNLOAD_ID,
 				{
-					from_name: formData.name,
-					from_email: formData.email,
+					name: formData.name,
+					email: formData.email,
 					phone: formData.phone,
 					company: formData.company,
-					pdf_title: pdfs[selectedPdf!].title,
-					// Você pode configurar no template do EmailJS para incluir o link real do PDF
-					pdf_link: `${window.location.origin}/pdfs/${pdfs[selectedPdf!].file}`,
+					title: pdfs[selectedPdf!].title,
+					link: `${window.location.origin}/download/${token}`,
 				},
 				import.meta.env.VITE_EMAILJS_USER_ID
 			);

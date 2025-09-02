@@ -124,7 +124,7 @@ const Footer = () => {
         </div>
 
         {/* Social Links & Copyright */}
-        <div className="border-t border-cyber-border pt-8">
+        <div className="border-t border-cyber-line pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Social Links */}
             <div className="flex items-center gap-4">
@@ -166,9 +166,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Decorative Elements */}
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-border opacity-50"></div>
       </div>
     </footer>
   );

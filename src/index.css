@@ -101,13 +101,14 @@ All colors MUST be HSL.
     --cyber-dark: 225 39% 4%;
     --cyber-surface: 225 39% 8%;
     --cyber-border: 225 39% 16%;
+    --cyber-line: 0 100% 100%;
 
     --hero-dark: 220 13% 20%;
     --footer-dark: 220 13% 20%;
   }
 
   .light {
-    --background: 40 40% 97%; /* Off-white */
+    --background: 26 28% 96%; /* Off-white */
     --foreground: 225 39% 4%;
     --card: 0 0% 100%;
     --card-foreground: 225 39% 4%;
@@ -115,16 +116,16 @@ All colors MUST be HSL.
     --popover-foreground: 225 39% 4%;
     --primary: 216 76% 48%; /* #5072A5 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 50% 60%;
+    --secondary: 40 52% 32%; /* #7A5F27 */
     --secondary-foreground: 0 0% 100%;
     --muted: 210 40% 96%;
     --muted-foreground: 225 39% 14%;
-    --accent: 180 100% 40%;
+    --accent: 10 100% 40%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: 214 32% 92%;
+    --input: 214 32% 92%;
     --ring: 210 100% 50%;
 
     /* Light cyber colors */
@@ -134,9 +135,10 @@ All colors MUST be HSL.
     --cyber-cyan: 180 100% 40%;
     --cyber-dark: 0 0% 100%;
     --cyber-surface: 210 40% 96%;
-    --cyber-border: 214.3 31.8% 91.4%;
+    --cyber-border: 40 52% 82%;
+    --cyber-line: 217 74% 18%;
 
-    --hero-light: 40 40% 87%; /* Bege pastel claro para hero no tema claro */
+    --hero-light: 40 40% 87%;  /* Bege pastel claro para hero no tema claro */
     --footer-light: 40 40% 87%; /* Bege pastel claro para rodapé no tema claro */
   }
 }
@@ -150,7 +152,5 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  
 }

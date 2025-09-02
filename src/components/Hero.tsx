@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
-import heroImage from "@/assets/hero-bg.jpg";
+import logo18 from "@/assets/18.png"; // importe a imagem
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -11,18 +11,29 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{
+        background: "hsl(var(--background))", // usa o mesmo background do tema
+      }}
+    >
       {/* Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" />
-      
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundColor: "hsl(var(--background))", // cor de fundo igual ao background da imagem
+        }}
+      />
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-background/70" />
-      
+
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-pulse" />
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-accent rounded-full animate-ping" />
-        <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-secondary rounded-full animate-pulse delay-300" />
+        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-secondary rounded-full animate-ping" />
+        <div className="absolute top-1/2 right-1/2 w-3 h-3 bg-secondary rounded-full animate-pulse delay-200" />
       </div>
 
       {/* Content */}
@@ -30,26 +41,27 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-screen py-20">
           {/* Main Logo - Left Side */}
           <div className="flex flex-col items-center lg:items-start">
-            <h1 className="text-[20rem] md:text-[30rem] lg:text-[35rem] font-black font-orbitron bg-gradient-hero bg-clip-text text-transparent leading-none">
-              18
-            </h1>
+            <img
+              src={logo18}
+              alt="18 Tecnologia e Inteligência Artificial"
+              className="w-[18rem] md:w-[30rem] lg:w-[35rem] h-auto object-contain"
+            />
           </div>
 
           {/* Content - Right Side */}
           <div className="space-y-8 text-center lg:text-left">
             {/* Subtitle */}
             <div className="space-y-4">
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-primary mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-secondary mb-4">
                 <Zap className="w-6 h-6" />
-                <span className="text-sm font-semibold tracking-wide uppercase">Tecnologia & Inteligência Artificial</span>
+                <span className="text-sm font-semibold tracking-wide uppercase">Visão de Futuro</span>
                 <Zap className="w-6 h-6" />
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-                Inovação que transforma o futuro
+                Tecnologia &<br /> Inteligência Artificial
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                Desenvolvemos soluções tecnológicas avançadas e sistemas de IA que impulsionam 
-                seu negócio para a próxima era digital.
+                Desenvolvemos soluções tecnológicas avançadas e sistemas de IA que impulsionam seu negócio para a próxima era digital.
               </p>
             </div>
 

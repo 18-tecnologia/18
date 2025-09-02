@@ -68,7 +68,8 @@ export default {
 					cyan: 'hsl(var(--cyber-cyan))',
 					dark: 'hsl(var(--cyber-dark))',
 					surface: 'hsl(var(--cyber-surface))',
-					border: 'hsl(var(--cyber-border))'
+					border: 'hsl(var(--cyber-border))',
+					line: 'hsl(var(--cyber-line))'
 				}
 			},
 			backgroundImage: {

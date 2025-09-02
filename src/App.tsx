@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Culture from "@/pages/Culture";
 import Courses from "@/pages/Courses";
 import Downloads from "@/pages/Downloads";
+import DownloadFile from "@/pages/DownloadFile";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/cultura" element={<Culture />} />
             <Route path="/cursos" element={<Courses />} />
             <Route path="/downloads" element={<Downloads />} />
+            <Route path="/download/:token" element={<DownloadFile />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

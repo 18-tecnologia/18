@@ -7,11 +7,10 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Função para navegar para a home e rolar para a seção desejada
   const goToSectionOnHome = (sectionId: string) => {
     if (location.pathname !== "/") {
       navigate("/", { replace: false });
-      // Aguarda a navegação e rola para a seção após um pequeno delay
+      
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
