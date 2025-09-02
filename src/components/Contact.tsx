@@ -5,23 +5,71 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send, Clock, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "emailjs-com";
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const maskPhone = (value: string) => {
+  // Remove tudo que não for número
+  let v = value.replace(/\D/g, "");
+  // Limita a 11 dígitos
+  v = v.slice(0, 11);
+  // Aplica a máscara
+  if (v.length > 6) {
+    return `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+  } else if (v.length > 2) {
+    return `(${v.slice(0, 2)}) ${v.slice(2)}`;
+  } else if (v.length > 0) {
+    return `(${v}`;
+  }
+  return "";
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     message: ''
   });
+  const [emailValid, setEmailValid] = useState(true);
   const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
-    });
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setLoading(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+          time: new Date().toLocaleString(),
+          title: formData.name + " (" + formData.company + ")"
+        },
+        import.meta.env.VITE_EMAILJS_USER_ID
+      );
+      toast({
+        title: "Mensagem enviada!",
+        description: "Entraremos em contato em breve.",
+      });
+      setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Tente novamente mais tarde.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -121,27 +169,52 @@ const Contact = () => {
                     <Input
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="bg-input border-cyber-border focus:border-primary"
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        setEmailValid(emailRegex.test(e.target.value));
+                      }}
+                      className={`bg-input border-cyber-border focus:border-primary ${!emailValid ? "border-red-500" : ""}`}
                       placeholder="seu@email.com"
                       required
                     />
+                    {!emailValid && (
+                      <span className="text-xs text-red-500">Digite um e-mail válido.</span>
+                    )}
                   </div>
                 </div>
-                
-                <div>
-                  <label className="text-sm font-medium text-foreground mb-2 block">
-                    Empresa
-                  </label>
-                  <Input
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => setFormData({...formData, company: e.target.value})}
-                    className="bg-input border-cyber-border focus:border-primary"
-                    placeholder="Nome da sua empresa"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-2 block">
+                      Telefone
+                    </label>
+                    <Input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => {
+                        const masked = maskPhone(e.target.value);
+                        setFormData({ ...formData, phone: masked });
+                      }}
+                      className="bg-input border-cyber-border focus:border-primary"
+                      placeholder="(99) 99999-9999"
+                      required
+                      maxLength={15}
+                      inputMode="numeric"
+                      pattern="\(\d{2}\) \d{5}-\d{4}"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-foreground mb-2 block">
+                      Empresa
+                    </label>
+                    <Input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({...formData, company: e.target.value})}
+                      className="bg-input border-cyber-border focus:border-primary"
+                      placeholder="Nome da sua empresa"
+                    />
+                  </div>
                 </div>
-
                 <div>
                   <label className="text-sm font-medium text-foreground mb-2 block">
                     Mensagem
@@ -154,14 +227,13 @@ const Contact = () => {
                     required
                   />
                 </div>
-
                 <Button 
-                  type="button" 
+                  type="submit" 
                   className="w-full bg-gradient-hero text-primary-foreground hover:shadow-glow-primary transition-all duration-300"
                   size="lg"
-                  onClick={() => window.open('https://wa.me/5531999193955?text=Site%2018%20Tecnologia', '_blank')}
+                  disabled={loading}
                 >
-                  Vamos Conversar
+                  {loading ? "Enviando..." : "Enviar mensagem"}
                   <Send className="ml-2 h-4 w-4" />
                 </Button>
               </form>
