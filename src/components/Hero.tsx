@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
-import logo18 from "@/assets/18.png"; // importe a imagem
+import logo18 from "@/assets/18-blue.png"; // importe a imagem
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -89,10 +89,16 @@ const Hero = () => {
 
         {/* Floating Elements */}
         <div className="absolute top-20 left-10 animate-float">
-          <div className="w-16 h-16 border border-primary/30 rounded-lg rotate-45" />
+          <div className="w-16 h-16 border border-primary/60 rounded-lg rotate-45" />
+        </div>
+        <div className="absolute top-60 right-10 animate-rotate">
+          <div className="w-16 h-16 border border-destructive rounded-lg rotate-45" />
+        </div>
+        <div className="absolute bottom-10 left-10 animate-float delay-1000">
+          <div className="w-12 h-12 border border-secondary/60 rounded-full" />
         </div>
         <div className="absolute bottom-20 right-10 animate-float delay-1000">
-          <div className="w-12 h-12 border border-accent/30 rounded-full" />
+          <div className="w-12 h-12 border border-accent/90 rounded-full" />
         </div>
       </div>
 
