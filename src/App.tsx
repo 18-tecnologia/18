@@ -10,6 +10,7 @@ import Culture from "@/pages/Culture";
 import Courses from "@/pages/Courses";
 import Downloads from "@/pages/Downloads";
 import DownloadFile from "@/pages/DownloadFile";
+import { Analytics } from "@vercel/analytics/next"
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="system" storageKey="18tech-ui-theme">
       <TooltipProvider>
+        <Analytics />
         <Toaster />
         <Sonner />
         <BrowserRouter>
