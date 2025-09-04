@@ -10,7 +10,7 @@ import Culture from "@/pages/Culture";
 import Courses from "@/pages/Courses";
 import Downloads from "@/pages/Downloads";
 import DownloadFile from "@/pages/DownloadFile";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"; // Use /react para projetos React
 
 const queryClient = new QueryClient();
 
@@ -18,7 +18,6 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="system" storageKey="18tech-ui-theme">
       <TooltipProvider>
-        <Analytics />
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -31,6 +30,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        <Analytics /> {/* Adicione aqui, antes do fechamento do ThemeProvider */}
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
