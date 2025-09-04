@@ -10,7 +10,8 @@ import Culture from "@/pages/Culture";
 import Courses from "@/pages/Courses";
 import Downloads from "@/pages/Downloads";
 import DownloadFile from "@/pages/DownloadFile";
-import { Analytics } from "@vercel/analytics/react"; // Use /react para projetos React
+import { Analytics } from "@vercel/analytics/react";
+import { Bubble } from "@typebot.io/react";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +31,25 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        <Analytics /> {/* Adicione aqui, antes do fechamento do ThemeProvider */}
+        <Analytics />
+        <Bubble
+          typebot="dezoito"
+          apiHost="https://typebot.io"
+          previewMessage={{
+            message: "Posso te ajudar?",
+            autoShowDelay: 5000,
+            avatarUrl:
+              "https://s3.typebot.io/public/workspaces/cmawmrbii0014zy2pb2ikd4yp/typebots/qkq67d1wm5dwmulcllu79t6d/hostAvatar?v=1757019535817",
+          }}
+          theme={{
+            button: { backgroundColor: "#262778" },
+            previewMessage: {
+              textColor: "#262778",
+              closeButtonBackgroundColor: "#F7F4F2",
+              closeButtonIconColor: "#DE8031",
+            },
+          }}
+        />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
