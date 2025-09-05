@@ -1,6 +1,4 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { useEffect } from "react";
+import Image from "next/image";
 
 const courses = [
 	{
@@ -69,49 +67,63 @@ const courses = [
 	},
 ];
 
-export default function Courses() {
-	useEffect(() => {
-		window.scrollTo({ top: 0, behavior: "smooth" });
-	}, []);
-
-	return (
-		<div className="min-h-screen flex flex-col bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
-			<Header />
-			<main className="flex-1 pt-28 pb-12 px-4 max-w-5xl mx-auto">
-				<h1 className="text-4xl md:text-5xl font-bold mb-10 text-[hsl(var(--cyber-blue))] text-center">
+const Courses = () => (
+  <section id="courses" className="py-20 px-4">
+    <div className="container mx-auto max-w-7xl">
+		{/* Header */}
+		<div className="text-center mb-16 animate-fade-in">
+			<div className="inline-flex items-center gap-2 text-primary mb-4">
+				<div className="w-8 h-px bg-gradient-border"></div>
+				<span className="text-sm font-semibold tracking-wide uppercase">
 					Nossos Cursos
-				</h1>
-				<div className="grid md:grid-cols-2 gap-10">
-					{courses.map((course) => (
-						<div
-							key={course.title}
-							className="bg-[hsl(var(--card))] rounded-xl shadow-lg border border-[hsl(var(--cyber-border))] flex flex-col"
-						>
-							<img
-								src={course.image}
-								alt={course.title}
-								className="rounded-t-xl object-cover h-56 w-full"
-							/>
-							<div className="p-6 flex-1 flex flex-col">
-								<h2 className="text-2xl font-bold mb-2 text-[hsl(var(--cyber-blue-light))]">
-									{course.title}
-								</h2>
-								<p className="mb-4 text-base">{course.description}</p>
-								<ul className="mb-4 list-disc list-inside text-sm text-[hsl(var(--foreground))]">
-									{course.topics.map((topic) => (
-										<li key={topic}>{topic}</li>
-									))}
-								</ul>
-								<div className="mt-auto flex items-center justify-between text-sm text-[hsl(var(--cyber-blue))] font-semibold">
-									<span>Duração: {course.duration}</span>
-									<span>Nível: {course.level}</span>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-			</main>
-			<Footer />
+				</span>
+				<div className="w-8 h-px bg-gradient-border"></div>
+			</div>
+			<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+				Aprendizado{" "}
+				<span className="bg-gradient-hero bg-clip-text text-transparent">
+					prático
+				</span>{" "}
+				imersivo
+			</h2>
+			<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+				Um catálogo de temas e cursos que preparam você para o futuro da
+				tecnologia e inovação. Os grandes projetos começam com uma boa
+				educação.
+			</p>
 		</div>
-	);
-}
+				
+		<div className="grid md:grid-cols-2 gap-10">
+			{courses.map((course) => (
+				<div
+					key={course.title}
+					className="bg-[hsl(var(--card))] rounded-xl shadow-lg border border-[hsl(var(--cyber-border))] flex flex-col"
+				>
+					<img
+						src={course.image}
+						alt={course.title}
+						className="rounded-t-xl object-cover h-56 w-full"
+					/>
+					<div className="p-6 flex-1 flex flex-col">
+						<h2 className="text-2xl font-bold mb-2 text-[hsl(var(--cyber-blue-light))]">
+							{course.title}
+						</h2>
+						<p className="mb-4 text-base">{course.description}</p>
+						<ul className="mb-4 list-disc list-inside text-sm text-[hsl(var(--foreground))]">
+							{course.topics.map((topic) => (
+								<li key={topic}>{topic}</li>
+							))}
+						</ul>
+						<div className="mt-auto flex items-center justify-between text-sm text-[hsl(var(--cyber-blue))] font-semibold">
+							<span>Duração: {course.duration}</span>
+							<span>Nível: {course.level}</span>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+  </section>
+);
+
+export default Courses;

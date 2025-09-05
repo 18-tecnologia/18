@@ -58,7 +58,7 @@ const Header = () => {
             Serviços
           </button>
           <button
-            onClick={() => navigate("/cursos")}
+            onClick={() => goToSectionOnHome("courses")}
             className="text-foreground hover:text-primary transition-colors"
           >
             Cursos

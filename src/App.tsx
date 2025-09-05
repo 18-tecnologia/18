@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Culture from "@/pages/Culture";
-import Courses from "@/pages/Courses";
 import Downloads from "@/pages/Downloads";
 import DownloadFile from "@/pages/DownloadFile";
 import { Analytics } from "@vercel/analytics/react";
@@ -25,7 +24,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/cultura" element={<Culture />} />
-            <Route path="/cursos" element={<Courses />} />
             <Route path="/downloads" element={<Downloads />} />
             <Route path="/download/:token" element={<DownloadFile />} />
             <Route path="*" element={<NotFound />} />
