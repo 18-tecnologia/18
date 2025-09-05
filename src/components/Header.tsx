@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "./ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ const Header = () => {
   const goToSectionOnHome = (sectionId: string) => {
     if (location.pathname !== "/") {
       navigate("/", { replace: false });
-      
+
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -43,10 +44,7 @@ const Header = () => {
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center space-x-8">
           <button
-            onClick={() => {
-              navigate("/cultura");
-              setIsMenuOpen(false);
-            }}
+            onClick={() => goToSectionOnHome("cultura")}
             className="text-foreground hover:text-primary transition-colors"
           >
             Cultura
@@ -64,17 +62,19 @@ const Header = () => {
             Cursos
           </button>
           <button
-            onClick={() => navigate("/downloads")}
-            className="text-foreground hover:text-primary transition-colors"
-          >
-            Downloads
-          </button>
-          <button
             onClick={() => goToSectionOnHome("contact")}
             className="text-foreground hover:text-primary transition-colors"
           >
             Contato
           </button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow-primary transition-all duration-300"
+            onClick={() => navigate("/downloads")}
+          >
+            Downloads
+          </Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -91,10 +91,7 @@ const Header = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-md">
           <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <button
-              onClick={() => {
-                navigate("/cultura");
-                setIsMenuOpen(false);
-              }}
+              onClick={() => goToSectionOnHome("cultura")}
               className="text-left text-foreground hover:text-primary transition-colors"
             >
               Cultura
@@ -106,16 +103,10 @@ const Header = () => {
               Serviços
             </button>
             <button
-              onClick={() => navigate("/cursos")}
+              onClick={() => goToSectionOnHome("courses")}
               className="text-left text-foreground hover:text-primary transition-colors"
             >
               Cursos
-            </button>
-            <button
-              onClick={() => navigate("/downloads")}
-              className="text-left text-foreground hover:text-primary transition-colors"
-            >
-              Downloads
             </button>
             <button
               onClick={() => goToSectionOnHome("contact")}
@@ -123,6 +114,14 @@ const Header = () => {
             >
               Contato
             </button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow-primary transition-all duration-300"
+              onClick={() => navigate("/downloads")}
+            >
+              Downloads
+            </Button>
           </nav>
         </div>
       )}

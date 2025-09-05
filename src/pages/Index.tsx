@@ -4,12 +4,14 @@ import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Courses from "@/components/Courses";
+import Cultura from "@/components/Culture";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
+      <Cultura />
       <Services />
       <Courses />
       <Contact />
