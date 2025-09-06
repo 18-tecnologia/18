@@ -43,3 +43,42 @@
 html {
     scroll-behavior: smooth;
   }
+
+  /* Adicione estas regras ao seu arquivo CSS global */
+
+@keyframes gradientShift {
+  0% {
+    stop-color: hsl(var(--primary)); /* Cor inicial 1 */
+  }
+  25% {
+    stop-color: hsl(var(--accent)); /* Cor intermediária 1 */
+  }
+  50% {
+    stop-color: hsl(var(--destructive)); /* Cor final 1 */
+  }
+  75% {
+    stop-color: hsl(var(--secondary)); /* Cor intermediária 2 */
+  }
+  100% {
+    stop-color: hsl(var(--primary)); /* Volta para a Cor inicial 1 */
+  }
+}
+
+@keyframes gradientShiftReverse {
+  0% {
+    stop-color: hsl(var(--secondary)); /* Cor inicial 2 */
+  }
+  25% {
+    stop-color: hsl(var(--muted)); /* Cor intermediária 3 */
+  }
+  50% {
+    stop-color: hsl(var(--border)); /* Cor final 2 */
+  }
+  75% {
+    stop-color: hsl(var(--accent)); /* Cor intermediária 4 */
+  }
+  100% {
+    stop-color: hsl(var(--secondary)); /* Volta para a Cor inicial 2 */
+  }
+}
+

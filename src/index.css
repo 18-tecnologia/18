@@ -151,6 +151,51 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
 
-  
+/* Adicione estas regras ao seu arquivo CSS global */
+
+@keyframes gradientShift {
+  0% {
+    stop-color: hsl(var(--primary)); /* Cor inicial 1 */
+  }
+  25% {
+    stop-color: hsl(var(--accent)); /* Cor intermediária 1 */
+  }
+  50% {
+    stop-color: hsl(var(--destructive)); /* Cor final 1 */
+  }
+  75% {
+    stop-color: hsl(var(--secondary)); /* Cor intermediária 2 */
+  }
+  100% {
+    stop-color: hsl(var(--primary)); /* Volta para a Cor inicial 1 */
+  }
+}
+
+@keyframes gradientShiftReverse {
+  0% {
+    stop-color: hsl(var(--secondary)); /* Cor inicial 2 */
+  }
+  25% {
+    stop-color: hsl(var(--muted)); /* Cor intermediária 3 */
+  }
+  50% {
+    stop-color: hsl(var(--border)); /* Cor final 2 */
+  }
+  75% {
+    stop-color: hsl(var(--accent)); /* Cor intermediária 4 */
+  }
+  100% {
+    stop-color: hsl(var(--secondary)); /* Volta para a Cor inicial 2 */
+  }
+}
+
+/* Aplicar a animação aos stops do gradiente */
+.logo-gradient-start {
+  animation: gradientShift 10s ease-in-out infinite alternate; /* 10s duração, alternando, infinito */
+}
+
+.logo-gradient-end {
+  animation: gradientShiftReverse 10s ease-in-out infinite alternate; /* Duração e modo da animação */
 }

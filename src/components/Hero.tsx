@@ -1,14 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
-import logo18 from "@/assets/18-blue.png"; // importe a imagem
+import Logo from "@/components/Logo";
+import { useState, useEffect } from "react"; // Importe useState e useEffect
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [logoPosition, setLogoPosition] = useState({ x: '50%', y: '50%' });
+  
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      // Captura a posição do mouse na tela
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Limpeza do listener de evento
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Referência para o elemento SVG para pegar suas dimensões
+    const svgElement = document.getElementById('logo-svg');
+    if (!svgElement) return;
+
+    // Converte as coordenadas do mouse para a proporção do SVG
+    const rect = svgElement.getBoundingClientRect();
+    const x = ((mousePosition.x - rect.left) / rect.width) * 100 + '%';
+    const y = ((mousePosition.y - rect.top) / rect.height) * 100 + '%';
+    
+    setLogoPosition({ x, y });
+  }, [mousePosition]);
 
   return (
     <section
@@ -41,10 +72,12 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-screen py-20">
           {/* Main Logo - Left Side */}
           <div className="flex flex-col items-center lg:items-start">
-            <img
-              src={logo18}
-              alt="18 Tecnologia e Inteligência Artificial"
-              className="w-[18rem] md:w-[30rem] lg:w-[35rem] h-auto object-contain"
+            <Logo
+              id="logo-svg" // Adiciona um ID para referenciar no JavaScript
+              className="w-[18rem] md:w-[30rem] lg:w-[35rem] h-auto text-primary"
+              aria-label="18 Tecnologia e Inteligência Artificial"
+              mouseX={logoPosition.x}
+              mouseY={logoPosition.y}
             />
           </div>
 
