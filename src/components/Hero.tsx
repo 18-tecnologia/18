@@ -103,7 +103,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="bg-gradient-hero text-primary-foreground border-0 hover:shadow-glow-primary transition-all duration-300 transform hover:scale-105"
-                onClick={() => window.open('https://wa.me/5531999193955?text=Site%2018%20Tecnologia', '_blank')}
+                onClick={() => window.open('https://wa.me/5511915777168?text=Site%2018%20Tecnologia', '_blank')}
               >
                 Vamos Conversar
                 <ArrowRight className="ml-2 h-5 w-5" />
