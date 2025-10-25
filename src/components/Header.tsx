@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
+import { useLanguage } from "../locales/LanguageContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { translations } = useLanguage();
 
   const goToSectionOnHome = (sectionId: string) => {
     if (location.pathname !== "/") {
@@ -17,7 +20,7 @@ const Header = () => {
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100); // 100ms é suficiente na maioria dos casos
+      }, 100);
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -38,7 +41,7 @@ const Header = () => {
             setIsMenuOpen(false);
           }}
         >
-          18 Tecnologia e Inteligência Artificial
+          {translations.hero.title}
         </div>
 
         {/* Desktop Menu */}
@@ -47,25 +50,25 @@ const Header = () => {
             onClick={() => goToSectionOnHome("cultura")}
             className="text-foreground hover:text-primary transition-colors"
           >
-            Cultura
+            {translations.header.culture}
           </button>
           <button
             onClick={() => goToSectionOnHome("services")}
             className="text-foreground hover:text-primary transition-colors"
           >
-            Serviços
+            {translations.header.services}
           </button>
           <button
             onClick={() => goToSectionOnHome("courses")}
             className="text-foreground hover:text-primary transition-colors"
           >
-            Cursos
+            {translations.header.courses}
           </button>
           <button
             onClick={() => goToSectionOnHome("contact")}
             className="text-foreground hover:text-primary transition-colors"
           >
-            Contato
+            {translations.header.contact}
           </button>
           <Button
             size="lg"
@@ -73,17 +76,22 @@ const Header = () => {
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow-primary transition-all duration-300"
             onClick={() => navigate("/downloads")}
           >
-            Downloads
+            {translations.header.downloads}
           </Button>
+          <div className="flex items-center ml-4">
+            <LanguageSwitcher />
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="md:hidden flex items-center space-x-4">
+          <LanguageSwitcher />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -94,25 +102,25 @@ const Header = () => {
               onClick={() => goToSectionOnHome("cultura")}
               className="text-left text-foreground hover:text-primary transition-colors"
             >
-              Cultura
+              {translations.header.culture}
             </button>
             <button
               onClick={() => goToSectionOnHome("services")}
               className="text-left text-foreground hover:text-primary transition-colors"
             >
-              Serviços
+              {translations.header.services}
             </button>
             <button
               onClick={() => goToSectionOnHome("courses")}
               className="text-left text-foreground hover:text-primary transition-colors"
             >
-              Cursos
+              {translations.header.courses}
             </button>
             <button
               onClick={() => goToSectionOnHome("contact")}
               className="text-left text-foreground hover:text-primary transition-colors"
             >
-              Contato
+              {translations.header.contact}
             </button>
             <Button
               size="lg"
@@ -120,7 +128,7 @@ const Header = () => {
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow-primary transition-all duration-300"
               onClick={() => navigate("/downloads")}
             >
-              Downloads
+              {translations.header.downloads}
             </Button>
           </nav>
         </div>

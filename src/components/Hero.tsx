@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
 import Logo from "@/components/Logo";
-import { useState, useEffect } from "react"; // Importe useState e useEffect
+import { useState, useEffect } from "react";
+import { useLanguage } from "@/locales/LanguageContext";
 
 const Hero = () => {
+  const { translations } = useLanguage();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [logoPosition, setLogoPosition] = useState({ x: '50%', y: '50%' });
   
@@ -87,14 +89,24 @@ const Hero = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-center lg:justify-start gap-2 text-secondary mb-4">
                 <Zap className="w-6 h-6" />
-                <span className="text-sm font-semibold tracking-wide uppercase">Visão de Futuro</span>
+                <span className="text-sm font-semibold tracking-wide uppercase">{translations.hero.vision}</span>
                 <Zap className="w-6 h-6" />
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-                Tecnologia &<br /> Inteligência Artificial
+                {translations.hero.subtitle.split('&').map((part, i, arr) => (
+                  <>
+                    {part}
+                    {i < arr.length - 1 && (
+                      <>
+                        &nbsp;&amp;&nbsp;
+                        <br />
+                      </>
+                    )}
+                  </>
+                ))}
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                Desenvolvemos soluções tecnológicas avançadas e sistemas de IA que impulsionam seu negócio para a próxima era digital.
+                {translations.hero.description}
               </p>
             </div>
 
@@ -103,9 +115,9 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="bg-gradient-hero text-primary-foreground border-0 hover:shadow-glow-primary transition-all duration-300 transform hover:scale-105"
-                onClick={() => window.open('https://wa.me/5511915777168?text=Site%2018%20Tecnologia', '_blank')}
+                onClick={() => window.open('https://wa.me/5511915777168', '_blank')}
               >
-                Vamos Conversar
+                {translations.hero.cta.talk}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
@@ -114,7 +126,7 @@ const Hero = () => {
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-glow-primary transition-all duration-300"
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Nossos Serviços
+                {translations.hero.cta.services}
               </Button>
             </div>
           </div>

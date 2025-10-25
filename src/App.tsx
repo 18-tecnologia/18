@@ -10,10 +10,14 @@ import Downloads from "@/pages/Downloads";
 import DownloadFile from "@/pages/DownloadFile";
 import { Analytics } from "@vercel/analytics/react";
 import { Bubble } from "@typebot.io/react";
+import { LanguageProvider } from "@/locales/LanguageContext";
+import { useDocumentMetadata } from "@/locales/useDocumentMetadata";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const AppContent = () => {
+  useDocumentMetadata();
+  return (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="system" storageKey="18tech-ui-theme">
       <TooltipProvider>
@@ -49,6 +53,13 @@ const App = () => (
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
+  );
+};
+
+const App = () => (
+  <LanguageProvider>
+    <AppContent />
+  </LanguageProvider>
 );
 
 export default App;

@@ -158,7 +158,7 @@ const Services = () => {
 							<button
 								onClick={() =>
 									window.open(
-										"https://wa.me/5511915777168?text=Site%2018%20Tecnologia",
+										"https://wa.me/5511915777168",
 										"_blank"
 									)
 								}
